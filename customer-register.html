@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration - MK Transports</title>
+    <meta name="description" content="Register with MK Transports to save your details for fast truck booking.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">MK</span>
+                <div class="logo-text">
+                    <span class="company-name">MK Transports</span>
+                    <span class="tagline">Safe & Reliable</span>
+                </div>
+            </a>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="book-truck.html">Book Truck</a></li>
+                    <li><a href="track-booking.html">Track Booking</a></li>
+                    <li><a href="customer-register.html" class="active">Register</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="tel:9643943256" class="call-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Call Now</span>
+                </a>
+                <a href="book-truck.html" class="book-btn">
+                    <i class="fas fa-truck"></i>
+                    <span>Book Truck</span>
+                </a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero register-hero">
+        <div class="container">
+            <div class="hero-content register-content">
+                <div class="hero-text">
+                    <span class="hero-badge"><i class="fas fa-user-check"></i> Save Time on Booking</span>
+                    <h1>Register as a Customer</h1>
+                    <p>Create your customer profile once and enjoy faster truck booking every time.</p>
+                    <div class="hero-buttons">
+                        <a href="book-truck.html" class="btn btn-secondary">
+                            <i class="fas fa-truck"></i> Book After Registering
+                        </a>
+                        <a href="track-booking.html" class="btn btn-tertiary">
+                            <i class="fas fa-map-marker-alt"></i> Track Booking
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-form register-form-card">
+                    <div class="form-header">
+                        <h3><i class="fas fa-user-plus"></i> Customer Registration</h3>
+                        <p>Register now to prefill future truck bookings automatically.</p>
+                    </div>
+                    <form id="customerRegisterForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="regName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="regPhone" placeholder="10-digit mobile number" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="regEmail" placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Company / Business Name</label>
+                            <input type="text" id="regCompany" placeholder="Optional">
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" id="regCity" placeholder="Your city" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea id="regAddress" rows="3" placeholder="Complete address"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <i class="fas fa-save"></i> Register Now
+                            </button>
+                        </div>
+                        <p class="small-note">Already registered? <a href="book-truck.html">Continue to booking</a>.</p>
+                    </form>
+                    <div id="registerMessage" class="register-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="cookieConsentBanner" class="cookie-banner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <strong>Cookie Preferences</strong>
+                <p>We use necessary cookies for registration and optional cookies to improve the site. If you choose only necessary cookies, we still record the date to improve your experience.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button id="acceptAllCookies" class="btn btn-primary">Accept All</button>
+                <button id="acceptNecessaryCookies" class="btn btn-secondary">Only Necessary</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js" defer></script>
+    <script src="js/customer-register.js" defer></script>
+</body>
+</html>

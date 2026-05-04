@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard - MK Transports</title>
+    <link rel="stylesheet" href="css/driver-styles.css">
+    <link rel="stylesheet" href="css/ai-chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Driver Header -->
+    <header class="driver-header">
+        <div class="container">
+            <div class="driver-logo">
+                <span class="logo-icon">MK</span>
+                <span class="logo-text">Driver Panel</span>
+            </div>
+            <div class="driver-info">
+                <span id="driverName">Welcome, Driver</span>
+                <a href="#" id="logoutLink" onclick="logoutDriver()">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard-section">
+        <div class="container">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-bell"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="availableLoads">0</span>
+                        <span class="stat-label">Available Loads</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="acceptedLoads">0</span>
+                        <span class="stat-label">Accepted</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-truck-loading"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="completedTrips">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-rupee-sign"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalEarnings">₹0</span>
+                        <span class="stat-label">Total Earnings</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Loads Section -->
+            <div class="loads-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bell"></i> Available Load Requests</h2>
+                    <p>Click "Accept" or "Decline" on loads near your location</p>
+                </div>
+                <div id="loadsContainer" class="loads-container">
+                    <!-- Loads will be dynamically added here -->
+                    <div class="no-loads">
+                        <i class="fas fa-truck"></i>
+                        <p>No loads available at the moment. Check back soon!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Active Loads -->
+            <div class="loads-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-truck-moving"></i> My Accepted Loads</h2>
+                </div>
+                <div id="myLoadsContainer" class="loads-container">
+                    <div class="no-loads">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>No accepted loads yet. Accept a load from above to start.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Driver Profile -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user"></i> My Profile</h2>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-info">
+                        <div class="profile-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <label>Name</label>
+                                <span id="profileName">-</span>
+                            </div>
+                        </div>
+                        <div class="profile-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <label>Phone</label>
+                                <span id="profilePhone">-</span>
+                            </div>
+                        </div>
+                        <div class="profile-item">
+                            <i class="fas fa-truck"></i>
+                            <div>
+                                <label>Vehicle</label>
+                                <span id="profileVehicle">-</span>
+                            </div>
+                        </div>
+                        <div class="profile-item">
+                            <i class="fas fa-id-card"></i>
+                            <div>
+                                <label>Vehicle Number</label>
+                                <span id="profileVehicleNumber">-</span>
+                            </div>
+                        </div>
+                        <div class="profile-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <label>Base Location</label>
+                                <span id="profileLocation">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Load Details Modal -->
+    <div id="loadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Load Details</h3>
+            <div id="loadDetailsContent"></div>
+            <button id="acceptLoadBtn" class="btn btn-primary">Accept This Load</button>
+        </div>
+    </div>
+
+    <script src="js/ai-chat.js"></script>
+    <script src="js/driver-dashboard.js"></script>
+</body>
+</html>

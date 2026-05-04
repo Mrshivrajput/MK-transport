@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Truck - MK Transports</title>
+    <link rel="stylesheet" href="css/booking-styles.css">
+    <link rel="stylesheet" href="css/ai-chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhnWxk3EP1llltEN8MVkjJ-8SVKhPPrjA&libraries=places"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">MK</span>
+                <div class="logo-text">
+                    <span class="company-name">MK Transports</span>
+                    <span class="tagline">Safe & Reliable</span>
+                </div>
+            </a>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="book-truck.html" class="active">Book Truck</a></li>
+                    <li><a href="track-booking.html">Track Booking</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="tel:9643943256" class="call-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Call Now</span>
+                </a>
+                <a href="customer-register.html" class="book-btn register-btn">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register</span>
+                </a>
+                <a href="track-booking.html" class="track-btn">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Track</span>
+                </a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-header">
+                <h1><i class="fas fa-truck-loading"></i> Book a Truck</h1>
+                <p>Fill in your load details and nearby drivers will be notified</p>
+            </div>
+
+            <form id="bookingForm" class="booking-form">
+                <!-- Trip Type -->
+                <div class="form-section">
+                    <h3><i class="fas fa-route"></i> Trip Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Trip Type</label>
+                            <select id="tripType" required onchange="toggleReturnTrip()">
+                                <option value="one-way">One Way</option>
+                                <option value="return">Return Trip</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Expected Date</label>
+                            <input type="date" id="bookingDate" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stops Section -->
+                <div class="form-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Stops (Pickup & Delivery)</h3>
+                    <p class="section-note">Add at least pickup and delivery location. You can add intermediate stops if needed.</p>
+                    
+                    <div id="stopsContainer">
+                        <!-- Stops will be added here dynamically -->
+                    </div>
+                    
+                    <button type="button" class="btn btn-secondary" onclick="addStop()">
+                        <i class="fas fa-plus"></i> Add Stop
+                    </button>
+                </div>
+
+                <!-- Cargo Details -->
+                <div class="form-section">
+                    <h3><i class="fas fa-boxes"></i> Cargo Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Cargo Type</label>
+                            <select id="cargoType" required>
+                                <option value="">Select Cargo Type</option>
+                                <option value="goods">General Goods</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="machinery">Machinery</option>
+                                <option value="textiles">Textiles</option>
+                                <option value="food">Food Items</option>
+                                <option value="chemicals">Chemicals</option>
+                                <option value="furniture">Furniture</option>
+                                <option value="automobiles">Automobiles</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Total Weight (tons)</label>
+                            <input type="number" id="totalWeight" placeholder="e.g., 5" required min="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Special Requirements (Optional)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="requirement" value="packing"> Need Packing</label>
+                            <label><input type="checkbox" name="requirement" value="loading"> Need Loading/Unloading</label>
+                            <label><input type="checkbox" name="requirement" value="insurance"> Require Insurance</label>
+                            <label><input type="checkbox" name="requirement" value="tracking"> GPS Tracking Required</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Required -->
+                <div class="form-section">
+                    <h3><i class="fas fa-truck"></i> Vehicle Required</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Vehicle Type</label>
+                            <select id="vehicleType" required>
+                                <option value="">Select Vehicle</option>
+                                <option value="pickup">Pickup (1-2 tons)</option>
+                                <option value="mini_truck">Mini Truck (3-5 tons)</option>
+                                <option value="truck">Truck (5-10 tons)</option>
+                                <option value="tempo">Tempo (3-4 tons)</option>
+                                <option value="container">Container (10-20 tons)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Vehicles</label>
+                            <input type="number" id="vehicleCount" value="1" min="1" max="10" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Contact Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" id="customerName" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="customerPhone" placeholder="Mobile Number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email (Optional)</label>
+                        <input type="email" id="customerEmail" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Notes</label>
+                        <textarea id="additionalNotes" rows="3" placeholder="Any additional information..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i> Submit Booking Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Recent Bookings -->
+    <section class="recent-bookings">
+        <div class="container">
+            <h2>Your Recent Bookings</h2>
+            <div id="recentBookingsList">
+                <p class="no-bookings">No bookings yet. Submit a booking above.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="cookieConsentBanner" class="cookie-banner">
+        <div class="cookie-banner-inner">
+            <div class="cookie-banner-text">
+                <strong>Cookie Preferences</strong>
+                <p>We use necessary cookies for booking functionality and optional cookies to improve your experience. If you do not accept optional cookies, we still save only the date needed to keep this site working better.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button id="acceptAllCookies" class="btn btn-primary">Accept All</button>
+                <button id="acceptNecessaryCookies" class="btn btn-secondary">Only Necessary</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/ai-chat.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/script.js" defer></script>
+</body>
+</html>
